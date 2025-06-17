@@ -1,0 +1,123 @@
+:root {
+    --primary-color: #20B2AA;
+    --secondary-color: #17a2b8;
+    --accent-color: #ffc107;
+}
+
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    margin-right: 1rem;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 8px 20px;
+}
+
+.btn-primary:hover {
+    background-color: #1a9b95;
+    border-color: #1a9b95;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 80px 0 60px 0;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    color: #6c757d;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 3rem;
+}
+
+.mentor-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    height: 100%;
+    margin-bottom: 2rem;
+}
+
+.mentor-card:hover {
+    transform: translateY(-5px);
+}
+
+.mentor-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.mentor-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.mentor-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.mentor-expertise {
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+/* Mentor images - using placeholder gradients that match the style */
+.mentor-john { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.mentor-jane { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.mentor-donald { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.mentor-mollie { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+.mentor-chris { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+.mentor-sarah { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+
+.mentor-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    font-size: 4rem;
+}

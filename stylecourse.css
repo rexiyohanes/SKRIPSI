@@ -1,0 +1,157 @@
+:root {
+    --primary-color: #20B2AA;
+    --secondary-color: #17a2b8;
+    --accent-color: #ffc107;
+}
+
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    margin-right: 1rem;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 8px 20px;
+}
+
+.btn-primary:hover {
+    background-color: #1a9b95;
+    border-color: #1a9b95;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 80px 0 60px 0;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    color: #6c757d;
+    margin-bottom: 2rem;
+}
+
+.category-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background: white;
+    border: 2px solid #e9ecef;
+    color: #6c757d;
+    padding: 8px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+}
+
+.course-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    height: 100%;
+    margin-bottom: 2rem;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+.course-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.course-web { background: linear-gradient(45deg, #20B2AA, #87CEEB); }
+.course-python { background: linear-gradient(45deg, #3776ab, #ffd43b); }
+.course-marketing { background: linear-gradient(45deg, #4CAF50, #8BC34A); }
+.course-design { background: linear-gradient(45deg, #FF9800, #FFC107); }
+.course-data { background: linear-gradient(45deg, #9C27B0, #E91E63); }
+.course-ux { background: linear-gradient(45deg, #2196F3, #03A9F4); }
+
+.course-content {
+    padding: 1.5rem;
+}
+
+.course-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.course-duration {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 3rem;
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.course-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 3rem;
+}
+
+.course-label {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-weight: 600;
+    text-align: center;
+}

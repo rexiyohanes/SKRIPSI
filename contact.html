@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Ruang Belajar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylecontact.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-sm-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Ruang Belajar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="course.html">Kursus</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mentor.html">Mentor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Kontak</a>
+                    </li>
+                </ul>
+                <button class="btn btn-primary">Segera Bergabung</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="hero-title">Hubungi Kami</h1>
+            <p class="hero-subtitle">Ayo belajar bersama kami! Isi formulir di bawah untuk mulai perjalanan belajarmu.</p>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <div class="contact-form">
+                        <form>
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Nama Pelajar</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="Masukkan Nama Anda">
+                            </div>
+                            <div class="mb-3">
+                                <label for="emailAddress" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="emailAddress" placeholder="Masukkan Email Anda">
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Pilihan Kursus</label>
+                                <select name="pilihan" class="form-control" id="pilihan">
+                                <option value="">Pilih salah satu</option>
+                                <option value="option1">Web Development</option>
+                                <option value="option2">Python</option>
+                                <option value="option3">UI/UX</option>
+                            </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="subject" class="form-label">No. Telepon</label>
+                                <input type="number" class="form-control" id="number" placeholder="Masukkan No. Telepon Anda">
+                            </div>
+                            <div class="mb-5">
+                                <label for="message" class="form-label">Pesan</label>
+                                <textarea class="form-control" id="message" placeholder="Your message here"></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Kirim</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-info">
+                        <h3>Hubungi Kami</h3>
+                        <div class="mb-3">
+                            <h6><i class="fas fa-map-marker-alt me-2"></i>Alamat</h6>
+                            <p>Jl. Raya Kb. Jeruk No.27<br>Jakarta Barat, DKI Jakarta</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><i class="fas fa-phone me-2"></i>Telepon</h6>
+                            <p>0808 0707 0606</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><i class="fas fa-envelope me-2"></i>Email</h6>
+                            <p>info@ruangbelajar.com</p>
+                        </div>
+                        <div>
+                            <h6><i class="fas fa-clock me-2"></i>Jam Operasional</h6>
+                            <p>Senin - Jumat: 9:00 AM - 5:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="social-title">Ikuti Kami</h2>
+            <p class="social-subtitle">Jangan lewatkan informasi menarik dari kami di media sosial.</p>
+            
+            <div class="social-cards">
+                <div class="social-card">
+                    <div class="social-icon facebook-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h5>Facebook</h5>
+                    <p>Ikuti kami di facebook!</p>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon twitter-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h5>Twitter</h5>
+                    <p>Ikuti kami di twitter!</p>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h5>Instagram</h5>
+                    <p>Ikuti kami di instagram!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="text-md-center">
+                    <small class="text-muted">© 2025 Ruang Belajar.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+        });
+    </script>
+</body>
+</html>

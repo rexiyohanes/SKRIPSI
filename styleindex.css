@@ -1,0 +1,141 @@
+:root {
+    --primary-color: #20B2AA;
+    --secondary-color: #17a2b8;
+    --accent-color: #ffc107;
+}
+        
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    margin-right: 1rem;
+}
+                
+.navbar-nav .nav-link.active {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
+        
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 8px 20px;
+}
+        
+.btn-primary:hover {
+    background-color: #1a9b95;
+    border-color: #1a9b95;
+}
+        
+.hero-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 80px 0;
+}
+        
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+        
+.hero-subtitle {
+    color: #6c757d;
+    margin-bottom: 2rem;
+}
+
+.benefit-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.icon-yellow { background-color: #fff3cd; color: #856404; }
+.icon-blue { background-color: #cce5ff; color: #0066cc; }
+.icon-orange { background-color: #ffe0b3; color: #cc6600; }
+
+.course-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+.course-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.course-1 { background: linear-gradient(45deg, #20B2AA, #87CEEB); }
+.course-2 { background: linear-gradient(45deg, #87CEEB, #20B2AA); }
+.course-3 { background: linear-gradient(45deg, #ffc107, #ff8c00); }
+
+.testimonial-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    height: 100%;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 3rem;
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+
+.course-content {
+    padding: 1.5rem;
+}
+
+.rating {
+    color: var(--accent-color);
+}
