@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .auth-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .auth-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .auth-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .auth-header h3 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+        
+        .auth-body {
+            padding: 40px 30px;
+        }
+        
+        .form-floating {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .auth-toggle {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .auth-toggle a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .auth-toggle a:hover {
+            color: #764ba2;
+        }
+        
+        .input-group-text {
+            background: transparent;
+            border: 2px solid #e9ecef;
+            border-right: none;
+            border-radius: 10px 0 0 10px;
+        }
+        
+        .input-group .form-control {
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .password-toggle {
+            cursor: pointer;
+            color: #6c757d;
+            transition: color 0.3s ease;
+        }
+        
+        .password-toggle:hover {
+            color: #667eea;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card fade-in">
+            <!-- Login Form -->
+            <div id="loginForm">
+                <div class="auth-header">
+                    <h3><i class="fas fa-sign-in-alt me-2"></i>Masuk</h3>
+                </div>
+                <div class="auth-body">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com" required>
+                            <label for="loginEmail"><i class="fas fa-envelope me-2"></i>Email</label>
+                        </div>
+                        
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <div class="form-floating flex-fill">
+                                <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                                <label for="loginPassword">Password</label>
+                            </div>
+                            <span class="input-group-text password-toggle" onclick="togglePassword('loginPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Ingat saya
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100 mb-3">
+                            <i class="fas fa-sign-in-alt me-2"></i>Masuk
+                        </button>
+                        
+                        <div class="text-center">
+                            <a href="#" class="text-muted">Lupa password?</a>
+                        </div>
+                    </form>
+                    
+                    <div class="auth-toggle">
+                        <p class="mb-0">Belum punya akun? <a href="#" onclick="showRegister()">Daftar di sini</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Register Form -->
+            <div id="registerForm" class="hidden">
+                <div class="auth-header">
+                    <h3><i class="fas fa-user-plus me-2"></i>Daftar</h3>
+                </div>
+                <div class="auth-body">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="registerName" placeholder="Nama Lengkap" required>
+                            <label for="registerName"><i class="fas fa-user me-2"></i>Nama Lengkap</label>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="registerEmail" placeholder="name@example.com" required>
+                            <label for="registerEmail"><i class="fas fa-envelope me-2"></i>Email</label>
+                        </div>
+                        
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <div class="form-floating flex-fill">
+                                <input type="password" class="form-control" id="registerPassword" placeholder="Password" required>
+                                <label for="registerPassword">Password</label>
+                            </div>
+                            <span class="input-group-text password-toggle" onclick="togglePassword('registerPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
+                        
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <div class="form-floating flex-fill">
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Konfirmasi Password" required>
+                                <label for="confirmPassword">Konfirmasi Password</label>
+                            </div>
+                            <span class="input-group-text password-toggle" onclick="togglePassword('confirmPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">
+                                Saya setuju dengan <a href="#" class="text-decoration-none">syarat dan ketentuan</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-user-plus me-2"></i>Daftar
+                        </button>
+                    </form>
+                    
+                    <div class="auth-toggle">
+                        <p class="mb-0">Sudah punya akun? <a href="#" onclick="showLogin()">Masuk di sini</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showRegister() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+            document.getElementById('registerForm').classList.add('fade-in');
+        }
+        
+        function showLogin() {
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('loginForm').classList.add('fade-in');
+        }
+        
+        function togglePassword(inputId, toggleIcon) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = toggleIcon.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+        
+        // Form validation
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (form.closest('#registerForm')) {
+                    const password = document.getElementById('registerPassword').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+                    
+                    if (password !== confirmPassword) {
+                        alert('Password dan konfirmasi password tidak cocok!');
+                        return;
+                    }
+                }
+                
+                alert('Form berhasil disubmit! (Demo)');
+            });
+        });
+    </script>
+</body>
+</html>

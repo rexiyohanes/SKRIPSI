@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Manajemen Sekolah</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            z-index: 1000;
+        }
+        
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 15px 20px;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        .stat-card {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card .card-body {
+            padding: 2rem;
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .bg-primary-gradient { background: linear-gradient(45deg, #007bff, #0056b3); }
+        .bg-success-gradient { background: linear-gradient(45deg, #28a745, #1e7e34); }
+        .bg-info-gradient { background: linear-gradient(45deg, #17a2b8, #117a8b); }
+        
+        .activity-item {
+            border-left: 4px solid #007bff;
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .btn-action {
+            padding: 5px 10px;
+            margin: 0 2px;
+            border-radius: 5px;
+        }
+        
+        .table th {
+            background-color: #f8f9fa;
+            border-top: none;
+            font-weight: 600;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: white !important;
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="p-4">
+            <h4 class="text-white mb-4"><i class="fas fa-graduation-cap me-2"></i>Sekolah App</h4>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="siswa">
+                        <i class="fas fa-users me-2"></i>Manajemen Siswa
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="kelas">
+                        <i class="fas fa-chalkboard-teacher me-2"></i>Manajemen Kelas
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="content-section active">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Dashboard</h2>
+                <span class="text-muted">Selamat datang di sistem manajemen sekolah</span>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="row mb-4">
+                <div class="col-md-4 mb-3">
+                    <div class="card stat-card">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="stat-icon bg-primary-gradient me-3">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">145</h3>
+                                <p class="text-muted mb-0">Total Siswa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card stat-card">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="stat-icon bg-success-gradient me-3">
+                                <i class="fas fa-chalkboard"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">12</h3>
+                                <p class="text-muted mb-0">Total Kelas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card stat-card">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="stat-icon bg-info-gradient me-3">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">8</h3>
+                                <p class="text-muted mb-0">Siswa Baru Bulan Ini</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" >
+                    <i class="fas fa-plus me-2"></i><a href="login.html">login</a>
+                </button>
+
+            <!-- Recent Activities -->
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-clock me-2"></i>Aktivitas Terbaru</h5>
+                </div>
+                <div class="card-body">
+                    <div class="activity-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Ahmad Fauzi</strong> bergabung dengan kelas <strong>XII IPA 1</strong>
+                            </div>
+                            <small class="text-muted">2024-06-20</small>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Siti Nurhaliza</strong> bergabung dengan kelas <strong>XI IPS 2</strong>
+                            </div>
+                            <small class="text-muted">2024-06-19</small>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Budi Santoso</strong> bergabung dengan kelas <strong>X MIPA 3</strong>
+                            </div>
+                            <small class="text-muted">2024-06-18</small>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Dewi Kartika</strong> bergabung dengan kelas <strong>XII IPS 1</strong>
+                            </div>
+                            <small class="text-muted">2024-06-17</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manajemen Siswa Section -->
+        <div id="siswa" class="content-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Manajemen Siswa</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahSiswaModal">
+                    <i class="fas fa-plus me-2"></i>Tambah Siswa
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Siswa</th>
+                                    <th>Email</th>
+                                    <th>Telepon</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Ahmad Fauzi</td>
+                                    <td>ahmad.fauzi@email.com</td>
+                                    <td>081234567890</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning btn-action" data-bs-toggle="modal" data-bs-target="#editSiswaModal">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger btn-action" onclick="confirmDelete('siswa', 'Ahmad Fauzi')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Siti Nurhaliza</td>
+                                    <td>siti.nurhaliza@email.com</td>
+                                    <td>081234567891</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning btn-action">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger btn-action" onclick="confirmDelete('siswa', 'Siti Nurhaliza')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Budi Santoso</td>
+                                    <td>budi.santoso@email.com</td>
+                                    <td>081234567892</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning btn-action">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger btn-action" onclick="confirmDelete('siswa', 'Budi Santoso')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manajemen Kelas Section -->
+        <div id="kelas" class="content-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Manajemen Kelas</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahKelasModal">
+                    <i class="fas fa-plus me-2"></i>Tambah Kelas
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Kelas</th>
+                                    <th>Instruktur</th>
+                                    <th>Jadwal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>XII IPA 1</td>
+                                    <td>Dr. Wahyu Hidayat</td>
+                                    <td>Senin - Jumat, 07:00-14:00</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning btn-action" data-bs-toggle="modal" data-bs-target="#editKelasModal">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger btn-action" onclick="confirmDelete('kelas', 'XII IPA 1')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>XI IPS 2</td>
+                                    <td>Dra. Sari Indrawati</td>
+                                    <td>Senin - Jumat, 07:00-14:00</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning btn-action">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger btn-action" onclick="confirmDelete('kelas', 'XI IPS 2')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>X MIPA 3</td>
+                                    <td>S.Pd. Andi Pratama</td>
+                                    <td>Senin - Jumat, 07:00-14:00</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning btn-action">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger btn-action" onclick="confirmDelete('kelas', 'X MIPA 3')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tambah Siswa -->
+    <div class="modal fade" id="tambahSiswaModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Siswa Baru</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="namaSiswa" class="form-label">Nama Siswa</label>
+                            <input type="text" class="form-control" id="namaSiswa" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailSiswa" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="emailSiswa" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="teleponSiswa" class="form-label">Telepon</label>
+                            <input type="tel" class="form-control" id="teleponSiswa" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary">Simpan Siswa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Siswa -->
+    <div class="modal fade" id="editSiswaModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Siswa</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="editNamaSiswa" class="form-label">Nama Siswa</label>
+                            <input type="text" class="form-control" id="editNamaSiswa" value="Ahmad Fauzi" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editEmailSiswa" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="editEmailSiswa" value="ahmad.fauzi@email.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTeleponSiswa" class="form-label">Telepon</label>
+                            <input type="tel" class="form-control" id="editTeleponSiswa" value="081234567890" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary">Update Siswa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tambah Kelas -->
+    <div class="modal fade" id="tambahKelasModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Kelas Baru</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="namaKelas" class="form-label">Nama Kelas</label>
+                            <input type="text" class="form-control" id="namaKelas" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="instruktur" class="form-label">Instruktur</label>
+                            <input type="text" class="form-control" id="instruktur" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jadwal" class="form-label">Jadwal</label>
+                            <input type="text" class="form-control" id="jadwal" placeholder="Contoh: Senin - Jumat, 07:00-14:00" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary">Simpan Kelas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Kelas -->
+    <div class="modal fade" id="editKelasModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Kelas</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="editNamaKelas" class="form-label">Nama Kelas</label>
+                            <input type="text" class="form-control" id="editNamaKelas" value="XII IPA 1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editInstruktur" class="form-label">Instruktur</label>
+                            <input type="text" class="form-control" id="editInstruktur" value="Dr. Wahyu Hidayat" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editJadwal" class="form-label">Jadwal</label>
+                            <input type="text" class="form-control" id="editJadwal" value="Senin - Jumat, 07:00-14:00" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary">Update Kelas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- <script>
+        // Navigation functionality
+        document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.sidebar .nav-link').forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Hide all content sections
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected section
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        // Delete confirmation
+        function confirmDelete(type, name) {
+            if (confirm(`Apakah Anda yakin ingin menghapus ${type} "${name}"?`)) {
+                alert(`${type} "${name}" berhasil dihapus!`);
+                // Here you would typically send an AJAX request to delete the item
+            }
+        }
+
+        // Form submissions (mock functionality)
+        document.querySelectorAll('.modal .btn-primary').forEach(btn => {
+            if (btn.textContent.includes('Simpan') || btn.textContent.includes('Update')) {
+                btn.addEventListener('click', function() {
+                    alert('Data berhasil disimpan!');
+                    // Close the modal
+                    const modal = this.closest('.modal');
+                    const modalInstance = bootstrap.Modal.getInstance(modal);
+                    modalInstance.hide();
+                });
+            }
+        });
+    </script> -->
+    <script src="main.js"></script>
+</body>
+</html>

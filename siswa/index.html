@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Siswa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+
+        .main-container {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), #6366f1);
+            color: white;
+            border-radius: 20px 20px 0 0 !important;
+            padding: 1.5rem;
+            border: none;
+        }
+
+        .card-header h5 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .nav-pills .nav-link {
+            border-radius: 15px;
+            margin: 0 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pills .nav-link.active {
+            background: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .schedule-item {
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-color);
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            transition: all 0.3s ease;
+        }
+
+        .schedule-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-item {
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .task-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 20px rgba(79, 70, 229, 0.1);
+        }
+
+        .grade-item {
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .grade-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #6366f1);
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--accent-color), #059669);
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .badge {
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+
+        .badge-success {
+            background: linear-gradient(135deg, var(--accent-color), #059669);
+        }
+
+        .badge-warning {
+            background: linear-gradient(135deg, var(--warning-color), #d97706);
+        }
+
+        .badge-danger {
+            background: linear-gradient(135deg, var(--danger-color), #dc2626);
+        }
+
+        .progress {
+            height: 8px;
+            border-radius: 10px;
+            background: #e2e8f0;
+        }
+
+        .progress-bar {
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent-color), #059669);
+        }
+
+        .file-upload-area {
+            border: 2px dashed #d1d5db;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--primary-color);
+            background: #f0f4ff;
+        }
+
+        .file-upload-area.dragover {
+            border-color: var(--accent-color);
+            background: #f0fdf4;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats-item {
+            text-align: center;
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Dashboard Siswa
+            </a>
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle me-1"></i>
+                        Ahmad Rizki
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="https://google.com"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container main-container">
+        <!-- Stats Cards -->
+        <div class="stats-card">
+            <div class="row">
+                <div class="col-md-3 stats-item">
+                    <div class="stats-number" id="totalSubjects">8</div>
+                    <div class="stats-label">Total Mata Pelajaran</div>
+                </div>
+                <div class="col-md-3 stats-item">
+                    <div class="stats-number" id="pendingTasks">5</div>
+                    <div class="stats-label">Tugas Pending</div>
+                </div>
+                <div class="col-md-3 stats-item">
+                    <div class="stats-number" id="averageGrade">85.2</div>
+                    <div class="stats-label">Rata-rata Nilai</div>
+                </div>
+                <div class="col-md-3 stats-item">
+                    <div class="stats-number" id="completedTasks">12</div>
+                    <div class="stats-label">Tugas Selesai</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <ul class="nav nav-pills justify-content-center mb-4" id="mainTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="schedule-tab" data-bs-toggle="pill" data-bs-target="#schedule" type="button" role="tab">
+                    <i class="fas fa-calendar-alt me-2"></i>Jadwal
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tasks-tab" data-bs-toggle="pill" data-bs-target="#tasks" type="button" role="tab">
+                    <i class="fas fa-tasks me-2"></i>Tugas
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="grades-tab" data-bs-toggle="pill" data-bs-target="#grades" type="button" role="tab">
+                    <i class="fas fa-chart-line me-2"></i>Nilai
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="mainTabContent">
+            <!-- Schedule Tab -->
+            <div class="tab-pane fade show active animate-fade-in" id="schedule" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-calendar-week me-2"></i>Jadwal Pelajaran Hari Ini</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="scheduleContainer">
+                            <!-- Schedule items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tasks Tab -->
+            <div class="tab-pane fade animate-fade-in" id="tasks" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-clipboard-list me-2"></i>Daftar Tugas</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="tasksContainer">
+                                    <!-- Tasks will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-upload me-2"></i>Upload Tugas</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="taskSelect" class="form-label">Pilih Tugas</label>
+                                    <select class="form-select" id="taskSelect">
+                                        <option selected>Pilih tugas yang akan disubmit</option>
+                                        <option value="1">Essay Bahasa Indonesia</option>
+                                        <option value="2">Laporan Praktikum Kimia</option>
+                                        <option value="3">Tugas Matematika Bab 5</option>
+                                    </select>
+                                </div>
+                                <div class="file-upload-area" id="fileUploadArea">
+                                    <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-muted"></i>
+                                    <p class="mb-2">Drag & drop file di sini atau klik untuk browse</p>
+                                    <p class="text-muted small">Format yang didukung: PDF, DOC, DOCX (Max 10MB)</p>
+                                    <input type="file" id="fileInput" class="d-none" accept=".pdf,.doc,.docx">
+                                </div>
+                                <div class="mt-3" id="uploadedFile" style="display: none;">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-file-alt me-2"></i>
+                                        <span id="fileName"></span>
+                                        <button class="btn btn-sm btn-outline-danger ms-auto" id="removeFile">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    <div class="progress mt-2" id="uploadProgress" style="display: none;">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-100 mt-3" id="submitTask" disabled>
+                                    <i class="fas fa-paper-plane me-2"></i>Submit Tugas
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grades Tab -->
+            <div class="tab-pane fade animate-fade-in" id="grades" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-trophy me-2"></i>Nilai Akademik</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="gradesContainer">
+                            <!-- Grades will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Sample data
+        const scheduleData = [
+            { time: '07:00 - 08:30', subject: 'Matematika', teacher: 'Pak Budi', room: 'Ruang 101' },
+            { time: '08:30 - 10:00', subject: 'Bahasa Indonesia', teacher: 'Bu Sari', room: 'Ruang 102' },
+            { time: '10:15 - 11:45', subject: 'Kimia', teacher: 'Bu Dewi', room: 'Lab Kimia' },
+            { time: '13:00 - 14:30', subject: 'Sejarah', teacher: 'Pak Ahmad', room: 'Ruang 105' },
+            { time: '14:30 - 16:00', subject: 'Olahraga', teacher: 'Pak Joko', room: 'Lapangan' }
+        ];
+
+        const tasksData = [
+            { 
+                id: 1, 
+                title: 'Essay Bahasa Indonesia', 
+                subject: 'Bahasa Indonesia', 
+                deadline: '2025-07-01', 
+                status: 'pending',
+                description: 'Tulis essay tentang "Pentingnya Literasi Digital" minimal 500 kata'
+            },
+            { 
+                id: 2, 
+                title: 'Laporan Praktikum Kimia', 
+                subject: 'Kimia', 
+                deadline: '2025-06-30', 
+                status: 'pending',
+                description: 'Buat laporan praktikum tentang reaksi asam-basa'
+            },
+            { 
+                id: 3, 
+                title: 'Tugas Matematika Bab 5', 
+                subject: 'Matematika', 
+                deadline: '2025-06-28', 
+                status: 'overdue',
+                description: 'Kerjakan soal-soal trigonometri halaman 125-130'
+            },
+            { 
+                id: 4, 
+                title: 'Presentasi Sejarah', 
+                subject: 'Sejarah', 
+                deadline: '2025-07-05', 
+                status: 'completed',
+                description: 'Presentasi tentang kemerdekaan Indonesia'
+            }
+        ];
+
+        const gradesData = [
+            { subject: 'Matematika', midterm: 85, final: 88, assignment: 90, total: 87.7 },
+            { subject: 'Bahasa Indonesia', midterm: 82, final: 85, assignment: 88, total: 85.0 },
+            { subject: 'Kimia', midterm: 78, final: 82, assignment: 85, total: 81.7 },
+            { subject: 'Fisika', midterm: 90, final: 92, assignment: 89, total: 90.3 },
+            { subject: 'Sejarah', midterm: 88, final: 86, assignment: 92, total: 88.7 },
+            { subject: 'Geografi', midterm: 84, final: 87, assignment: 86, total: 85.7 }
+        ];
+
+        // Populate schedule
+        function populateSchedule() {
+            const container = document.getElementById('scheduleContainer');
+            container.innerHTML = '';
+            
+            scheduleData.forEach(item => {
+                const scheduleItem = document.createElement('div');
+                scheduleItem.className = 'schedule-item';
+                scheduleItem.innerHTML = `
+                    <div class="row align-items-center">
+                        <div class="col-md-2">
+                            <strong class="text-primary">${item.time}</strong>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="mb-1">${item.subject}</h6>
+                            <small class="text-muted">${item.teacher}</small>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fas fa-map-marker-alt me-1"></i>
+                            ${item.room}
+                        </div>
+                        <div class="col-md-3 text-end">
+                            <span class="badge badge-success">Aktif</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(scheduleItem);
+            });
+        }
+
+        // Populate tasks
+        function populateTasks() {
+            const container = document.getElementById('tasksContainer');
+            container.innerHTML = '';
+            
+            tasksData.forEach(task => {
+                const taskItem = document.createElement('div');
+                taskItem.className = 'task-item';
+                
+                let statusBadge = '';
+                let statusClass = '';
+                
+                switch(task.status) {
+                    case 'completed':
+                        statusBadge = '<span class="badge badge-success">Selesai</span>';
+                        statusClass = 'border-success';
+                        break;
+                    case 'pending':
+                        statusBadge = '<span class="badge badge-warning">Pending</span>';
+                        statusClass = 'border-warning';
+                        break;
+                    case 'overdue':
+                        statusBadge = '<span class="badge badge-danger">Terlambat</span>';
+                        statusClass = 'border-danger';
+                        break;
+                }
+                
+                taskItem.classList.add(statusClass);
+                taskItem.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <h6 class="mb-1">${task.title}</h6>
+                            <small class="text-muted">${task.subject}</small>
+                        </div>
+                        ${statusBadge}
+                    </div>
+                    <p class="text-muted mb-2">${task.description}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            <i class="fas fa-calendar me-1"></i>
+                            Deadline: ${new Date(task.deadline).toLocaleDateString('id-ID')}
+                        </small>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary me-2" onclick="downloadTask(${task.id})">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            ${task.status !== 'completed' ? `<button class="btn btn-sm btn-primary" onclick="selectTaskForUpload(${task.id})">
+                                <i class="fas fa-upload"></i> Upload
+                            </button>` : ''}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(taskItem);
+            });
+        }
+
+        // Populate grades
+        function populateGrades() {
+            const container = document.getElementById('gradesContainer');
+            container.innerHTML = '';
+            
+            gradesData.forEach(grade => {
+                const gradeItem = document.createElement('div');
+                gradeItem.className = 'grade-item';
+                gradeItem.innerHTML = `
+                    <div class="row align-items-center">
+                        <div class="col-md-3">
+                            <h6 class="mb-1">${grade.subject}</h6>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <small class="text-muted">UTS</small>
+                            <div class="fw-bold">${grade.midterm}</div>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <small class="text-muted">UAS</small>
+                            <div class="fw-bold">${grade.final}</div>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <small class="text-muted">Tugas</small>
+                            <div class="fw-bold">${grade.assignment}</div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <small class="text-muted">Total</small>
+                            <div class="fw-bold fs-5 text-primary">${grade.total}</div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(gradeItem);
+            });
+        }
+
+        // File upload functionality
+        function initFileUpload() {
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const uploadedFile = document.getElementById('uploadedFile');
+            const fileName = document.getElementById('fileName');
+            const removeFile = document.getElementById('removeFile');
+            const submitTask = document.getElementById('submitTask');
+
+            fileUploadArea.addEventListener('click', () => fileInput.click());
+
+            fileUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileUploadArea.classList.add('dragover');
+            });
+
+            fileUploadArea.addEventListener('dragleave', () => {
+                fileUploadArea.classList.remove('dragover');
+            });
+
+            fileUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileUploadArea.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleFileSelect(files[0]);
+                }
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    handleFileSelect(e.target.files[0]);
+                }
+            });
+
+            removeFile.addEventListener('click', () => {
+                fileInput.value = '';
+                uploadedFile.style.display = 'none';
+                submitTask.disabled = true;
+            });
+
+            function handleFileSelect(file) {
+                fileName.textContent = file.name;
+                uploadedFile.style.display = 'block';
+                submitTask.disabled = false;
+            }
+
+            submitTask.addEventListener('click', () => {
+                simulateUpload();
+            });
+
+            function simulateUpload() {
+                const progress = document.getElementById('uploadProgress');
+                const progressBar = progress.querySelector('.progress-bar');
+                
+                progress.style.display = 'block';
+                submitTask.disabled = true;
+                submitTask.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Uploading...';
+                
+                let width = 0;
+                const interval = setInterval(() => {
+                    width += 10;
+                    progressBar.style.width = width + '%';
+                    
+                    if (width >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            alert('Tugas berhasil diupload!');
+                            progress.style.display = 'none';
+                            uploadedFile.style.display = 'none';
+                            fileInput.value = '';
+                            submitTask.disabled = true;
+                            submitTask.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Submit Tugas';
+                        }, 500);
+                    }
+                }, 200);
+            }
+        }
+
+        // Utility functions
+        function downloadTask(taskId) {
+            const task = tasksData.find(t => t.id === taskId);
+            alert(`Downloading: ${task.title}`);
+            // In a real application, this would trigger a file download
+        }
+
+        function selectTaskForUpload(taskId) {
+            const taskSelect = document.getElementById('taskSelect');
+            taskSelect.value = taskId;
+            
+            // Switch to tasks tab and scroll to upload section
+            const tasksTab = document.getElementById('tasks-tab');
+            tasksTab.click();
+            
+            setTimeout(() => {
+                document.querySelector('.file-upload-area').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            populateSchedule();
+            populateTasks();
+            populateGrades();
+            initFileUpload();
+            
+            // Add fade-in animation to tab content
+            document.querySelectorAll('[data-bs-toggle="pill"]').forEach(tab => {
+                tab.addEventListener('shown.bs.tab', function (e) {
+                    const targetPane = document.querySelector(e.target.getAttribute('data-bs-target'));
+                    targetPane.classList.add('animate-fade-in');
+                    
+                    setTimeout(() => {
+                        targetPane.classList.remove('animate-fade-in');
+                    }, 600);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
